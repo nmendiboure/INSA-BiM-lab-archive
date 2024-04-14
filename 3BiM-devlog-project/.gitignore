@@ -1,0 +1,4 @@
+run_tests
+doc/
+.doxygenrc.bak
+main

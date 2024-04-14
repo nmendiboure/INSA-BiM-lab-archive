@@ -1,0 +1,320 @@
+\hypertarget{classnoeud}{}\doxysection{noeud Class Reference}
+\label{classnoeud}\index{noeud@{noeud}}
+
+
+{\ttfamily \#include $<$noeud.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classnoeud_abdaff2a8d27a4453871c60e7608fe0ad}{noeud}} ()
+\item 
+\mbox{\hyperlink{classnoeud_a4165e157525c64d263d6846a387d7ebc}{noeud}} (int op\+\_\+par, int var1, int var2)
+\item 
+\mbox{\hyperlink{classnoeud_ad7351b352ebed6c3fbf7dac066a90fe5}{noeud}} (int op\+\_\+par, \mbox{\hyperlink{classnoeud}{noeud}} $\ast$noeud1, \mbox{\hyperlink{classnoeud}{noeud}} $\ast$noeud2)
+\item 
+\mbox{\hyperlink{classnoeud_ac9be8346a1994e5f629692b99b0b35a1}{noeud}} (int op\+\_\+par, int var1, \mbox{\hyperlink{classnoeud}{noeud}} $\ast$noeud1)
+\item 
+\mbox{\hyperlink{classnoeud_a1e819a6cecab59935c222788bfa56537}{noeud}} (int op\+\_\+par, bool const1, bool const2)
+\item 
+\mbox{\hyperlink{classnoeud_a628bf7f383df1d8c5cca8333da58f833}{noeud}} (int op\+\_\+par, bool const1, \mbox{\hyperlink{classnoeud}{noeud}} $\ast$noeud1)
+\item 
+\mbox{\hyperlink{classnoeud_a70d211c9e1b38e9673a2332f94f139ee}{noeud}} (int op\+\_\+par, bool const1, int var1)
+\item 
+\mbox{\hyperlink{classnoeud_a244b160b21416261188c707f8d670022}{noeud}} (int var1)
+\item 
+\mbox{\hyperlink{classnoeud_a5430fc4e112ec1e9de5787abfc804925}{noeud}} (\mbox{\hyperlink{classnoeud}{noeud}} $\ast$noeud1)
+\item 
+\mbox{\hyperlink{classnoeud_a552ce365c84b27ce923ce400ded7da6b}{noeud}} (const \mbox{\hyperlink{classnoeud}{noeud}} \&)
+\item 
+\mbox{\hyperlink{classnoeud_a52d0c905b36e76473bbb258e846aa5f5}{$\sim$noeud}} ()
+\item 
+int \mbox{\hyperlink{classnoeud_ad638fca13df1695466cb312b0e7bc391}{op}} () const
+\item 
+int \mbox{\hyperlink{classnoeud_a5ea4f1d224d5a36ddf528b0c5c58ffff}{nb\+\_\+aretes}} () const
+\item 
+int \mbox{\hyperlink{classnoeud_ab46e2e99799ea5f47536204606b59895}{nb\+\_\+var}} () const
+\item 
+int \mbox{\hyperlink{classnoeud_a22c3a5c05ba0076889db43b15185ad1e}{nb\+\_\+const}} () const
+\item 
+int $\ast$ \mbox{\hyperlink{classnoeud_a91f9a6c5dd52de65b411606a310771a8}{var}} () const
+\item 
+bool $\ast$ \mbox{\hyperlink{classnoeud_a0612394bbc6c6aadeb37adfe556976a9}{consts}} () const
+\item 
+\mbox{\hyperlink{classnoeud}{noeud}} $\ast$$\ast$ \mbox{\hyperlink{classnoeud_a7bab826ef9bf5fdcf23acd6bcb73835f}{aretes}} () const
+\item 
+bool \mbox{\hyperlink{classnoeud_afafee768938cdb2a5c350d70c7db9386}{compute}} (const vector$<$ bool $>$ list)
+\item 
+void \mbox{\hyperlink{classnoeud_ad31af7e08721fc409f154e6acd35c64b}{size}} (int \&ret)
+\item 
+void \mbox{\hyperlink{classnoeud_ab04559d441241aaed6db7ee31c2f4833}{liste}} (\mbox{\hyperlink{classnoeud}{noeud}} $\ast$$\ast$array, int \&i)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classnoeud_a9e69bff8da1295c4c37c58214f378e62}\label{classnoeud_a9e69bff8da1295c4c37c58214f378e62}} 
+class {\bfseries arbre}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+La classe noeud consiste en un unique noeud de l\textquotesingle{}arbre
+
+La classe noeud peut soit être reliée à d\textquotesingle{}autres noeuds, soit contenir des variables ou des constantes. En raison de cette structure, toute la structure de l\textquotesingle{}arbre est accessible depuis le premier noeud de ce dernier. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnoeud_abdaff2a8d27a4453871c60e7608fe0ad}\label{classnoeud_abdaff2a8d27a4453871c60e7608fe0ad}} 
+\index{noeud@{noeud}!noeud@{noeud}}
+\index{noeud@{noeud}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{noeud()}{noeud()}\hspace{0.1cm}{\footnotesize\ttfamily [1/10]}}
+{\footnotesize\ttfamily noeud\+::noeud (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Constructeur par défaut\+: inutilisé \mbox{\Hypertarget{classnoeud_a4165e157525c64d263d6846a387d7ebc}\label{classnoeud_a4165e157525c64d263d6846a387d7ebc}} 
+\index{noeud@{noeud}!noeud@{noeud}}
+\index{noeud@{noeud}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{noeud()}{noeud()}\hspace{0.1cm}{\footnotesize\ttfamily [2/10]}}
+{\footnotesize\ttfamily noeud\+::noeud (\begin{DoxyParamCaption}\item[{int}]{op\+\_\+par,  }\item[{int}]{var1,  }\item[{int}]{var2 }\end{DoxyParamCaption})}
+
+Constructeurs de la classe noeud avec deux variables, pour les opération A\+ND et OR
+
+
+\begin{DoxyParams}{Parameters}
+{\em op\+\_\+par} & l\textquotesingle{}opération réalisée par le noeud\+: 1 pour A\+ND, 2 pour OR \\
+\hline
+{\em var1} & un entier indiquant la position de la variable dans une liste de booléens \\
+\hline
+{\em var2} & id. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classnoeud_ad7351b352ebed6c3fbf7dac066a90fe5}\label{classnoeud_ad7351b352ebed6c3fbf7dac066a90fe5}} 
+\index{noeud@{noeud}!noeud@{noeud}}
+\index{noeud@{noeud}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{noeud()}{noeud()}\hspace{0.1cm}{\footnotesize\ttfamily [3/10]}}
+{\footnotesize\ttfamily noeud\+::noeud (\begin{DoxyParamCaption}\item[{int}]{op\+\_\+par,  }\item[{\mbox{\hyperlink{classnoeud}{noeud}} $\ast$}]{noeud1,  }\item[{\mbox{\hyperlink{classnoeud}{noeud}} $\ast$}]{noeud2 }\end{DoxyParamCaption})}
+
+Constructeur de la classe noeud avec deux noeuds, pour les opération A\+ND et OR
+
+
+\begin{DoxyParams}{Parameters}
+{\em op\+\_\+par} & l\textquotesingle{}opération réalisée par le noeud\+: 1 pour A\+ND, 2 pour OR \\
+\hline
+{\em noeud1} & un pointeur vers un noeud \\
+\hline
+{\em noeud2} & id. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classnoeud_ac9be8346a1994e5f629692b99b0b35a1}\label{classnoeud_ac9be8346a1994e5f629692b99b0b35a1}} 
+\index{noeud@{noeud}!noeud@{noeud}}
+\index{noeud@{noeud}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{noeud()}{noeud()}\hspace{0.1cm}{\footnotesize\ttfamily [4/10]}}
+{\footnotesize\ttfamily noeud\+::noeud (\begin{DoxyParamCaption}\item[{int}]{op\+\_\+par,  }\item[{int}]{var1,  }\item[{\mbox{\hyperlink{classnoeud}{noeud}} $\ast$}]{noeud1 }\end{DoxyParamCaption})}
+
+Constructeur de la classe noeud avec une variable et un noeud, pour les opération A\+ND et OR
+
+
+\begin{DoxyParams}{Parameters}
+{\em op\+\_\+par} & l\textquotesingle{}opération réalisée par le noeud\+: 1 pour A\+ND, 2 pour OR \\
+\hline
+{\em var1} & un entier indiquant la position de la variable dans une liste de booléens \\
+\hline
+{\em noeud1} & un pointeur vers un noeud \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classnoeud_a1e819a6cecab59935c222788bfa56537}\label{classnoeud_a1e819a6cecab59935c222788bfa56537}} 
+\index{noeud@{noeud}!noeud@{noeud}}
+\index{noeud@{noeud}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{noeud()}{noeud()}\hspace{0.1cm}{\footnotesize\ttfamily [5/10]}}
+{\footnotesize\ttfamily noeud\+::noeud (\begin{DoxyParamCaption}\item[{int}]{op\+\_\+par,  }\item[{bool}]{const1,  }\item[{bool}]{const2 }\end{DoxyParamCaption})}
+
+Constructeur de la classe noeud avec deux constantes, pour les opération A\+ND et OR
+
+
+\begin{DoxyParams}{Parameters}
+{\em op\+\_\+par} & l\textquotesingle{}opération réalisée par le noeud\+: 1 pour A\+ND, 2 pour OR \\
+\hline
+{\em const1} & une constante booléenne \\
+\hline
+{\em const2} & id. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classnoeud_a628bf7f383df1d8c5cca8333da58f833}\label{classnoeud_a628bf7f383df1d8c5cca8333da58f833}} 
+\index{noeud@{noeud}!noeud@{noeud}}
+\index{noeud@{noeud}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{noeud()}{noeud()}\hspace{0.1cm}{\footnotesize\ttfamily [6/10]}}
+{\footnotesize\ttfamily noeud\+::noeud (\begin{DoxyParamCaption}\item[{int}]{op\+\_\+par,  }\item[{bool}]{const1,  }\item[{\mbox{\hyperlink{classnoeud}{noeud}} $\ast$}]{noeud1 }\end{DoxyParamCaption})}
+
+Constructeur de la classe noeud avec une constante et un noeud pour les opération A\+ND et OR
+
+
+\begin{DoxyParams}{Parameters}
+{\em op\+\_\+par} & l\textquotesingle{}opération réalisée par le noeud\+: 1 pour A\+ND, 2 pour OR \\
+\hline
+{\em const1} & une constante booléenne \\
+\hline
+{\em noeud1} & un pointeur vers un noeud \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classnoeud_a70d211c9e1b38e9673a2332f94f139ee}\label{classnoeud_a70d211c9e1b38e9673a2332f94f139ee}} 
+\index{noeud@{noeud}!noeud@{noeud}}
+\index{noeud@{noeud}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{noeud()}{noeud()}\hspace{0.1cm}{\footnotesize\ttfamily [7/10]}}
+{\footnotesize\ttfamily noeud\+::noeud (\begin{DoxyParamCaption}\item[{int}]{op\+\_\+par,  }\item[{bool}]{const1,  }\item[{int}]{var1 }\end{DoxyParamCaption})}
+
+Constructeur de la classe noeud avec une constante et une variable, pour les opération A\+ND et OR
+
+
+\begin{DoxyParams}{Parameters}
+{\em op\+\_\+par} & l\textquotesingle{}opération réalisée par le noeud\+: 1 pour A\+ND, 2 pour OR \\
+\hline
+{\em const1} & une constante booléenne \\
+\hline
+{\em var1} & un entier indiquant la position de la variable dans une liste de booléens \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classnoeud_a244b160b21416261188c707f8d670022}\label{classnoeud_a244b160b21416261188c707f8d670022}} 
+\index{noeud@{noeud}!noeud@{noeud}}
+\index{noeud@{noeud}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{noeud()}{noeud()}\hspace{0.1cm}{\footnotesize\ttfamily [8/10]}}
+{\footnotesize\ttfamily noeud\+::noeud (\begin{DoxyParamCaption}\item[{int}]{var1 }\end{DoxyParamCaption})}
+
+Constructeur de la classe noeud avec une variable pour l\textquotesingle{}opération N\+OT
+
+
+\begin{DoxyParams}{Parameters}
+{\em var1} & un entier indiquant la position de la variable dans une liste de booléens \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classnoeud_a5430fc4e112ec1e9de5787abfc804925}\label{classnoeud_a5430fc4e112ec1e9de5787abfc804925}} 
+\index{noeud@{noeud}!noeud@{noeud}}
+\index{noeud@{noeud}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{noeud()}{noeud()}\hspace{0.1cm}{\footnotesize\ttfamily [9/10]}}
+{\footnotesize\ttfamily noeud\+::noeud (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnoeud}{noeud}} $\ast$}]{noeud1 }\end{DoxyParamCaption})}
+
+Constructeur de la classe noeud avec un noeud pour l\textquotesingle{}opération N\+OT
+
+
+\begin{DoxyParams}{Parameters}
+{\em noeud1} & un pointeur vers un noeud \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classnoeud_a552ce365c84b27ce923ce400ded7da6b}\label{classnoeud_a552ce365c84b27ce923ce400ded7da6b}} 
+\index{noeud@{noeud}!noeud@{noeud}}
+\index{noeud@{noeud}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{noeud()}{noeud()}\hspace{0.1cm}{\footnotesize\ttfamily [10/10]}}
+{\footnotesize\ttfamily noeud\+::noeud (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classnoeud}{noeud}} \&}]{acopier }\end{DoxyParamCaption})}
+
+Constructeur de copie, réalise une copie profonde
+
+
+\begin{DoxyParams}{Parameters}
+{\em acopier} & un noeud passé par référence constante \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classnoeud_a52d0c905b36e76473bbb258e846aa5f5}\label{classnoeud_a52d0c905b36e76473bbb258e846aa5f5}} 
+\index{noeud@{noeud}!````~noeud@{$\sim$noeud}}
+\index{````~noeud@{$\sim$noeud}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{$\sim$noeud()}{~noeud()}}
+{\footnotesize\ttfamily noeud\+::$\sim$noeud (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructeur de la classe noeud
+
+Ce destructeur est récursif\+: il détruit le noeud sur lequel il est appelé, ainsi que tous les noeuds en dessous de celui-\/ci. Attention\+: ce destructeur entre en conflit avec le destructeur automatique du C++ si les noeuds ne se trouvent pas dans le heap 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classnoeud_a7bab826ef9bf5fdcf23acd6bcb73835f}\label{classnoeud_a7bab826ef9bf5fdcf23acd6bcb73835f}} 
+\index{noeud@{noeud}!aretes@{aretes}}
+\index{aretes@{aretes}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{aretes()}{aretes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnoeud}{noeud}} $\ast$$\ast$ noeud\+::aretes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Renvoie un pointeur vers le tableau des noeuds
+
+Renvoie un pointeur nul si le tableau n\textquotesingle{}existe pas \mbox{\Hypertarget{classnoeud_afafee768938cdb2a5c350d70c7db9386}\label{classnoeud_afafee768938cdb2a5c350d70c7db9386}} 
+\index{noeud@{noeud}!compute@{compute}}
+\index{compute@{compute}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily bool noeud\+::compute (\begin{DoxyParamCaption}\item[{const vector$<$ bool $>$}]{list }\end{DoxyParamCaption})}
+
+Calcule le résultat de l\textquotesingle{}opération réalisé par le noeud
+
+Recursif\+: prend en compte le résultats des noeuds situés en dessous
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & une liste de booléens correspondant aux valeurs prises par les variables contenues dans les noeuds \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classnoeud_a0612394bbc6c6aadeb37adfe556976a9}\label{classnoeud_a0612394bbc6c6aadeb37adfe556976a9}} 
+\index{noeud@{noeud}!consts@{consts}}
+\index{consts@{consts}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{consts()}{consts()}}
+{\footnotesize\ttfamily bool $\ast$ noeud\+::consts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Renvoie un pointeur vers le tableau des constantes du noeud
+
+Renvoie un pointeur nul si le tableau n\textquotesingle{}existe pas \mbox{\Hypertarget{classnoeud_ab04559d441241aaed6db7ee31c2f4833}\label{classnoeud_ab04559d441241aaed6db7ee31c2f4833}} 
+\index{noeud@{noeud}!liste@{liste}}
+\index{liste@{liste}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{liste()}{liste()}}
+{\footnotesize\ttfamily void noeud\+::liste (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnoeud}{noeud}} $\ast$$\ast$}]{array,  }\item[{int \&}]{i }\end{DoxyParamCaption})}
+
+Permet d\textquotesingle{}obtenir une liste de pointeurs vers les noeuds situés en dessous du noeud sur lequel cette méthode est appelée
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & une liste de taille suffisante (à determiner avec size) qui contiendra à la fin les pointeurs vers les noeuds \\
+\hline
+{\em i} & un entier qui permet à la fonction de connaître l\textquotesingle{}index de la liste à modifier, ne pas changer la valeur par défaut \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classnoeud_a5ea4f1d224d5a36ddf528b0c5c58ffff}\label{classnoeud_a5ea4f1d224d5a36ddf528b0c5c58ffff}} 
+\index{noeud@{noeud}!nb\_aretes@{nb\_aretes}}
+\index{nb\_aretes@{nb\_aretes}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{nb\_aretes()}{nb\_aretes()}}
+{\footnotesize\ttfamily int noeud\+::nb\+\_\+aretes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Renvoie le nombre de noeuds auquel le noeud est relié \mbox{\Hypertarget{classnoeud_a22c3a5c05ba0076889db43b15185ad1e}\label{classnoeud_a22c3a5c05ba0076889db43b15185ad1e}} 
+\index{noeud@{noeud}!nb\_const@{nb\_const}}
+\index{nb\_const@{nb\_const}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{nb\_const()}{nb\_const()}}
+{\footnotesize\ttfamily int noeud\+::nb\+\_\+const (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Renvoie le nombre de constantes que contient le noeud \mbox{\Hypertarget{classnoeud_ab46e2e99799ea5f47536204606b59895}\label{classnoeud_ab46e2e99799ea5f47536204606b59895}} 
+\index{noeud@{noeud}!nb\_var@{nb\_var}}
+\index{nb\_var@{nb\_var}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{nb\_var()}{nb\_var()}}
+{\footnotesize\ttfamily int noeud\+::nb\+\_\+var (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Renvoie le nombre de variables que contient le noeud \mbox{\Hypertarget{classnoeud_ad638fca13df1695466cb312b0e7bc391}\label{classnoeud_ad638fca13df1695466cb312b0e7bc391}} 
+\index{noeud@{noeud}!op@{op}}
+\index{op@{op}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{op()}{op()}}
+{\footnotesize\ttfamily int noeud\+::op (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Renvoie l\textquotesingle{}opération réalisée par le noeud\+: 1 pour A\+ND, 2 pour OR, 3 pour N\+OT \mbox{\Hypertarget{classnoeud_ad31af7e08721fc409f154e6acd35c64b}\label{classnoeud_ad31af7e08721fc409f154e6acd35c64b}} 
+\index{noeud@{noeud}!size@{size}}
+\index{size@{size}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily void noeud\+::size (\begin{DoxyParamCaption}\item[{int \&}]{ret }\end{DoxyParamCaption})}
+
+Permet de connaître le nombre de noeud situé en dessous du noeud sur lequel cette méthode est appelée
+
+
+\begin{DoxyParams}{Parameters}
+{\em ret} & un entier nul incrémenté par la méthode \+: sa valeur finale correspond au nombre de noeuds en dessous \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classnoeud_a91f9a6c5dd52de65b411606a310771a8}\label{classnoeud_a91f9a6c5dd52de65b411606a310771a8}} 
+\index{noeud@{noeud}!var@{var}}
+\index{var@{var}!noeud@{noeud}}
+\doxysubsubsection{\texorpdfstring{var()}{var()}}
+{\footnotesize\ttfamily int $\ast$ noeud\+::var (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Renvoie un pointeur vers le tableau des variables du noeud
+
+Renvoie un pointeur nul si le tableau n\textquotesingle{}existe pas 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+noeud.\+h\item 
+noeud.\+cpp\end{DoxyCompactItemize}

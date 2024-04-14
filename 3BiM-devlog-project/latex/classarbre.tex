@@ -1,0 +1,144 @@
+\hypertarget{classarbre}{}\doxysection{arbre Class Reference}
+\label{classarbre}\index{arbre@{arbre}}
+
+
+{\ttfamily \#include $<$arbre.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classarbre_aad760158c318bfbf5fb2240c3b401bcd}{arbre}} (int nbrvar)
+\item 
+\mbox{\hyperlink{classarbre_a8e9bc04882eab3483c52b346ada956ce}{arbre}} (const \mbox{\hyperlink{classarbre}{arbre}} \&arbre\+\_\+copie)
+\item 
+\mbox{\hyperlink{classarbre_a564c784cf1c48790902c3e51d00dfd3b}{arbre}} (int nbrvar, int dummyfacor)
+\item 
+\mbox{\hyperlink{classarbre_aaa7c1669b24bb00ef6d8e281f59bad52}{arbre}} (\mbox{\hyperlink{classnoeud}{noeud}} $\ast$noeudf, int nbrvar)
+\item 
+\mbox{\hyperlink{classarbre_ae0fc951eb1263cd2599ad9504042826f}{$\sim$arbre}} ()
+\item 
+void \mbox{\hyperlink{classarbre_aa4d0a338d279370cd0e4f3a28bf6a01f}{calcul\+\_\+fitness}} (const vector$<$ vector$<$ bool $>$$>$ data)
+\item 
+\mbox{\hyperlink{classarbre}{arbre}} $\ast$ \mbox{\hyperlink{classarbre_a1616ae698ce55afb77f154dee36c0f3e}{creer\+\_\+fille}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classarbre_a0da3e35ef1ee83a8e082b257b1ce7ccc}{fitness\+\_\+}} =-\/1000
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Un objet de la classe arbre contient une formule de booléens qui peut être mutée selon trois mutations (délétion, insertion ou modification)
+
+Chaque arbre est obtenu à partir d\textquotesingle{}un parent dont l\textquotesingle{}on obtient une copie à laquelle on applique une mutation La fitness de l\textquotesingle{}arbre obtenue peut être calculée en lui fournissant un tableau contenant des observations et leurs résultats 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classarbre_aad760158c318bfbf5fb2240c3b401bcd}\label{classarbre_aad760158c318bfbf5fb2240c3b401bcd}} 
+\index{arbre@{arbre}!arbre@{arbre}}
+\index{arbre@{arbre}!arbre@{arbre}}
+\doxysubsubsection{\texorpdfstring{arbre()}{arbre()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily arbre\+::arbre (\begin{DoxyParamCaption}\item[{int}]{nbrvar }\end{DoxyParamCaption})}
+
+constructeur aléatoire pour générer un arbre de première génération avec 5 noeuds 
+\begin{DoxyParams}{Parameters}
+{\em nbrvar} & le nombre de variables observées\\
+\hline
+\end{DoxyParams}
+====================================================================
+
+Constructeurs
+
+\DoxyHorRuler{0}
+ ==================================================================== Constructeur al�atoire \hypertarget{classarbre_autotoc_md1}{}\doxysubsection{Cr�e un arbre de de premi�re g�n�ration avec 5 noeuds}\label{classarbre_autotoc_md1}
+\mbox{\Hypertarget{classarbre_a8e9bc04882eab3483c52b346ada956ce}\label{classarbre_a8e9bc04882eab3483c52b346ada956ce}} 
+\index{arbre@{arbre}!arbre@{arbre}}
+\index{arbre@{arbre}!arbre@{arbre}}
+\doxysubsubsection{\texorpdfstring{arbre()}{arbre()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily arbre\+::arbre (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classarbre}{arbre}} \&}]{arbre\+\_\+copie }\end{DoxyParamCaption})}
+
+constructeur de copie non utilisé 
+\begin{DoxyParams}{Parameters}
+{\em arbre\+\_\+copie} & ==================================================================== \\
+\hline
+\end{DoxyParams}
+\hypertarget{classarbre_autotoc_md2}{}\doxysubsection{Constructeur de copie}\label{classarbre_autotoc_md2}
+Constructeur de copie. Non utilis� (ne pas supprimer du .h pour �viter que C++ esssaye d\textquotesingle{}en faire un par lui m�me) \mbox{\Hypertarget{classarbre_a564c784cf1c48790902c3e51d00dfd3b}\label{classarbre_a564c784cf1c48790902c3e51d00dfd3b}} 
+\index{arbre@{arbre}!arbre@{arbre}}
+\index{arbre@{arbre}!arbre@{arbre}}
+\doxysubsubsection{\texorpdfstring{arbre()}{arbre()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily arbre\+::arbre (\begin{DoxyParamCaption}\item[{int}]{nbrvar,  }\item[{int}]{dummyfactor }\end{DoxyParamCaption})}
+
+constructeur d\textquotesingle{}un arbre à partir d\textquotesingle{}un autre sans random utilisé dans les tests 
+\begin{DoxyParams}{Parameters}
+{\em nbrvar} & le nombre de variables observées \\
+\hline
+{\em dummyfacor} & variable inutile pour différencier les constructeurs\\
+\hline
+\end{DoxyParams}
+==================================================================== Dummy constructeur pour les tests \hypertarget{classarbre_autotoc_md3}{}\doxysubsection{Constructeur d\textquotesingle{}arbre fille}\label{classarbre_autotoc_md3}
+\mbox{\Hypertarget{classarbre_aaa7c1669b24bb00ef6d8e281f59bad52}\label{classarbre_aaa7c1669b24bb00ef6d8e281f59bad52}} 
+\index{arbre@{arbre}!arbre@{arbre}}
+\index{arbre@{arbre}!arbre@{arbre}}
+\doxysubsubsection{\texorpdfstring{arbre()}{arbre()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily arbre\+::arbre (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnoeud}{noeud}} $\ast$}]{noeudf,  }\item[{int}]{nbrvar }\end{DoxyParamCaption})}
+
+constructeur d\textquotesingle{}arbre fille 
+\begin{DoxyParams}{Parameters}
+{\em noeudf} & premier noeud de l\textquotesingle{}arborescence donnée au nouvel arbre \\
+\hline
+{\em nbrvar} & le nombre de variables observées\\
+\hline
+\end{DoxyParams}
+==================================================================== Constructeur � partir d\textquotesingle{}une arborescence de noeuds \hypertarget{classarbre_autotoc_md4}{}\doxysubsection{Constructeur d\textquotesingle{}arbre fille}\label{classarbre_autotoc_md4}
+\mbox{\Hypertarget{classarbre_ae0fc951eb1263cd2599ad9504042826f}\label{classarbre_ae0fc951eb1263cd2599ad9504042826f}} 
+\index{arbre@{arbre}!````~arbre@{$\sim$arbre}}
+\index{````~arbre@{$\sim$arbre}!arbre@{arbre}}
+\doxysubsubsection{\texorpdfstring{$\sim$arbre()}{~arbre()}}
+{\footnotesize\ttfamily arbre\+::$\sim$arbre (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructeur de la classe Détruit tous les noeuds de l\textquotesingle{}arbre
+
+==================================================================== \hypertarget{classarbre_autotoc_md14}{}\doxysubsection{Destructeur}\label{classarbre_autotoc_md14}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classarbre_aa4d0a338d279370cd0e4f3a28bf6a01f}\label{classarbre_aa4d0a338d279370cd0e4f3a28bf6a01f}} 
+\index{arbre@{arbre}!calcul\_fitness@{calcul\_fitness}}
+\index{calcul\_fitness@{calcul\_fitness}!arbre@{arbre}}
+\doxysubsubsection{\texorpdfstring{calcul\_fitness()}{calcul\_fitness()}}
+{\footnotesize\ttfamily void arbre\+::calcul\+\_\+fitness (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ bool $>$$>$}]{data }\end{DoxyParamCaption})}
+
+Calcul de la fitness de l\textquotesingle{}arbre 
+\begin{DoxyParams}{Parameters}
+{\em data} & Vecteur de vecteurs de bool contenant les observations (une par ligne) et le résultat (dernière colonne)\\
+\hline
+\end{DoxyParams}
+==================================================================== \hypertarget{classarbre_autotoc_md6}{}\doxysubsection{Calcul du score (fitness) de l\textquotesingle{}arbre}\label{classarbre_autotoc_md6}
+\mbox{\Hypertarget{classarbre_a1616ae698ce55afb77f154dee36c0f3e}\label{classarbre_a1616ae698ce55afb77f154dee36c0f3e}} 
+\index{arbre@{arbre}!creer\_fille@{creer\_fille}}
+\index{creer\_fille@{creer\_fille}!arbre@{arbre}}
+\doxysubsubsection{\texorpdfstring{creer\_fille()}{creer\_fille()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classarbre}{arbre}} $\ast$ arbre\+::creer\+\_\+fille (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Fonction qui crée une fille, fait une copie des noeuds de l\textquotesingle{}arbre et les fournit au constructeur de l\textquotesingle{}arbre fille
+
+\begin{DoxyReturn}{Returns}
+le nouvel arbre créé
+\end{DoxyReturn}
+==================================================================== \hypertarget{classarbre_autotoc_md7}{}\doxysubsection{M�thode pour cr�er une fille}\label{classarbre_autotoc_md7}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classarbre_a0da3e35ef1ee83a8e082b257b1ce7ccc}\label{classarbre_a0da3e35ef1ee83a8e082b257b1ce7ccc}} 
+\index{arbre@{arbre}!fitness\_@{fitness\_}}
+\index{fitness\_@{fitness\_}!arbre@{arbre}}
+\doxysubsubsection{\texorpdfstring{fitness\_}{fitness\_}}
+{\footnotesize\ttfamily int arbre\+::fitness\+\_\+ =-\/1000}
+
+définit après le 1er appel de calcul fitness Plus elle est grande (proche de 0), meilleure est la formule de l\textquotesingle{}arbre 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+arbre.\+h\item 
+arbre.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,319 @@
+---
+title: "Bird's bones"
+author: Nicolas Mendiboure 4BiM
+geometry: "left=2cm, right=2cm, top=2cm, bottom=2cm"
+fontsize: 5pt
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction au sujet :
+
+Source du jeu de données : https://www.kaggle.com/zhangjuefei/birds-bones-and-living-habits
+
+Il existe un très grand nombre d'espèces d'oiseaux différentes telles que les canards, les autruches, les pinguins ou les pigeons etc... 
+Certains parmi eux sont capables de voler, d'autres de nager à la surface de l'eau où en profondeur, ou bien encore de courir vite pour attraper une proie ou fuir un prédateur. 
+Ainsi selon leur milieu de vie et leurs habitudes de vie, les oiseaux étudiés dans ce jeu de données ont été classés selon six groupes écologiques différents :
+
+1. Les oiseaux nageurs (SW);
+2. Les oiseaux échassiers ou limicoles (W);
+3. Les oiseaux terrestres (T);
+4. Les oiseaux "raptors" (R);
+5. Les oiseaux grimpeurs (P);
+6. Les oiseaux Chanteurs (SO).
+
+
+Par ailleurs tous les oiseaux appartenant à des groupes écologiques différents présentes des caractéristiques et apparences différentes. Les oiseaux volant possèdes de grandes ailes, les échassiers ont de grandes pattes etc... 
+Or il existe un attribut que nous pouvons comparer chez chaque catégorie d'oiseaux, il s'agit des os. 
+Ainsi en tant que spécialiste des données et des analyses en biostatistiques, nous allons chercher à voir s'il existe une relation entre les différents groupes écologiques d'oiseaux et la forme de leurs os. Nous pourrons aussi regarder si ces différentes tailles d'os sont corrélées entre elles.
+
+Pour ce faire 10 mesures ont été faites sur 420 oiseaux différents. Plus précisément, les mesures ont été prises sur des squelettes d'oiseaux provenant du Musée Naturel d'Histoire de Los Angeles, on y trouves notamment 21 ordres, 153 genres et 254 espèces d'oiseaux différentes.
+
+Les 10 mesures sont les suivantes (en millimètres) :
+
+1. Longueur Humérus ;
+2. Diamètre Humérus ;
+3. Longueur avant bras (Ulna) ; 
+4. Diamètre Ulna ;
+5. Longueur Fémur ; 
+6. Diamètre Fémur ;
+7. Longueur Tibiotarse ;
+8. Diamètre Tibiotarse ;
+9. Longueur Tarso-mététarse ; 
+10. Diamètre Tarso-métatarse.
+
+Ce jeu de données est fourni par le Dr. D.Liu du Musée Naturel d'Histoire de Pékin.
+
+# Visualisation et filtrage  des données :
+
+Il faut s'assurer de bien effacer les variables stockées dans R avant de commencer :
+
+```{r rm var}
+rm(list=ls())
+```
+
+
+On charge tout d'abord les libraries dont nous allons avoir besoin pour la suite de ce devoir :
+
+```{r libraries, message=FALSE}
+library(ade4)
+library(adegraphics)
+```
+
+Nous chargeons maintenant nos données dans une variable *birds*, qu'il est possible de visualiser avec la commande *View(birds)*. Ensuite il faut s'assurer que notre jeu de données est complet, c'est à dire que chaque individu possède une valeur pour chaque variable (pas de case vide). Pour se faire nous allons supprimer les lignes (et donc individus) qui possèdent des "Na" comme valeur grâce à la commande : *birds[complete.cases(birds),]*. En effet comme nous avons un total de 420 individus, nous pouvons nous permettre d'en enlever quelque un. On vérifie avec la commande *sum(is.na(birds))* que nous avons bien enlevé tous les "Na" du jeu. 
+
+```{r datas loading}
+birds <- read.csv("bird.csv", sep = ",", header = TRUE)
+birds <- birds[complete.cases(birds),]
+sum(is.na(birds)) == 0
+names(birds)
+```
+
+```{r filtrer les outliers, include=FALSE}
+filter_outliers <- function(df, limit){
+  index <- c()
+  for (row in 1:dim(df)[1]){
+    for (col in 1:dim(df)[2]){
+      if (df[row, col] > limit){
+        if ( (row %in% index) == FALSE ){
+          index <- c(index, row)
+        }
+      }
+    }
+  }
+  return(index)
+}
+```
+On peut commencer par représenter nos données sur le premier boxplot ci-dessous (à gauche). On voit tout de suite qu'il y a une hétérogénéité des moyennes et des variances entre nos 10 variables, avec notamment 2 groupes distincts de mesures. Cela est cohérent avec la réalité car les longueurs d'os sont logiquement plus élevées que les diamètres des os. Afin de replacer l'ensemble de nos données sur un même ordre de grandeur, nous allons **centrer - réduire** notre jeu de données avec la commande *scale()*. Le centrage - réduction permet d'avoir une moyenne centrée sur 0 et un variance réduire à 1, il suffit d'appliquer la formule suivante : $X = \frac{X - \mu}{\sigma}$. Ainsi il est possible d'observer le résultat du centrage-réduction sur le boxplot du milieu. On remarquera que les échelles des axes ont changé.
+
+Par ailleurs nous observons qu'il existe des points aberrants, appelés aussi *outliers*. Pour les éliminer, nous avons créé une fonction *filter_outliers* (disponible dans le code R) qui stocke dans un index les lignes comportant des outliers définis selon un seuil arbitraire (dans notre cas : 4). La fonction l'indexe avec les lignes comportant des outliers, nous pouvons par la suite supprimer ces lignes sur le jeu de données voulu. Le résultat de cette opération est visible dans le 3ème boxplot à droite. 
+
+
+```{r centrage réduction, fig.width=12, echo=FALSE}
+par(mfrow = c(1, 3), mar = c(5, 5, 4, 2) + 0.1 )
+
+
+boxplot(birds[2:11], horizontal = T, las = 1, 
+        main = "Avant centrage et reduction",
+        cex.main = 1,
+        col = "lightblue")
+
+
+boxplot(scale(birds[2:11]), horizontal = T, las = 1,
+        main = "Apres centrage et reduction",
+        cex.main = 1,
+        col = "lightblue")
+
+index <- filter_outliers(scale(birds[2:10]), limit = 4)
+
+boxplot(scale(birds[2:10])[-c(index),], horizontal = T, las = 1,
+        main = "Apres suppression des outliers",
+        cex.main = 1,
+        col = "lightblue")
+
+```
+
+Pour la suite de ce devoir nous utiliserons le dataframe *birds2* contenant nos données. Il correspond à *birds* après centrage - réduction et filtrage des outliers.
+
+```{r birds2}
+birds2 <- birds[, 2:12]
+birds2[, 1:10] <- scale(birds2[, 1:10])
+colnames(birds2)[11] <- 'groups'
+birds2 <- birds2[-c(index),]
+```
+
+
+# Analyses Multivariées :
+
+## 1. Analyse en composante principales  (ACP) :
+
+*Les résultats graphiques sont montrés plus bas avec ceux de la BCA et LDA pour une meilleure comparaison*.
+
+Lorsque l'on fait le *summary()* de l'ACP, on peut d'abord regarder les valeurs propres obtenues. Celui-ci nous dit qu'il y a 10 valeurs propres en tout, seules 5 d'entre elles sont montrées.
+
+```{r ACP, fig.height=4, fig.width=4}
+pca.birds <- dudi.pca(df = birds2[1:10] , scannf = FALSE, nf = 2)
+#summary(pca.birds)
+
+100*pca.birds$eig/sum(pca.birds$eig)
+```
+
+```{r plot ACP, echo=FALSE}
+#par(mfrow = c(1, 2))
+
+#s.corcircle(pca.birds$c1, xax =1, yax = 2)
+#scatter(pca.birds)
+```
+
+Les valeurs propres nous renseignent sur la fraction de l’inertie totale prise en compte par chaque axe. Elles sont rangées par convention dans l’ordre décroissant. Le premier axe représente 87 % de l'inertie totale et le deuxième axe représente 6.5% de l'inertie. Si l'on ne conserve que ces deux valeurs propres là, leur somme (ou cumul) étant égale à 93% est suffisante pour représenter l'inertie totale, il est possible de représenter la projection de nos 10 variables dans un repère défini par nos 2 axes principaux grâce à la commande *s.corcircle*. 
+
+Sur le premier facteur (ou axe) nos 10 variables pointent toutes du même coté (voir figure plus bas). Cela est dû à "l'effet taille" lorsque les variables sont toutes corrélées positivement entres elles. Lorsque nous avons un angle aigu entre deux flèches, cela signifie que nos 2 variables en questions sont très corrélées. C'est par exemple le cas entre la longueur de l'ulna et son diamètre, ou entre la longueur de l'humérus et son diamètre, ce qui est plutôt cohérent d'un point de vue anatomique. Plus l'angle entre deux variables est faible et plus les variables sont corrélées, avec un coefficient de corrélation $r^{2} \approx 1$
+
+Pour le deuxième facteur, on voit que nous avons autant de variables de part et d'autre de l'axe horizontal, cinq au dessus et cinq dessous. En dessous nous avons les variables relatives à l'os ulna et à l'humérus ce qui correspondrait plutôt au membre supérieur des oiseaux tandis qu'au dessus de l'axe horizontal nous voyons les variables concernant les mesures sur les os du fémur et du tibiotarse et du tarso-métatarse (pied), soit au membre inférieur de l'oiseau. 
+
+
+
+## 2. Between-Class Analysis (BCA) et Linear Discriminant Analysis (LDA)  :
+
+Après avoir effectuer notre Analyse en Composante Principale nous pouvons approfondir notre étude avec 2 cas particuliers de cette ACP. Ces 2 analyses auront notamment pour objectif d'identifier les variables qui séparent les classes d'individus. Cependant elles diffèrent sur leur critère de maximisation de la variance.
+
+En premier lieu il est possible de réaliser une analyse inter-classe (BCA), celle-ci vise à chercher des axes sur la base de la variabilité inter-classe, de sorte à ce que celle-ci se retrouve maximisée. En pratique, l'analyse inter-classe peut s'utiliser quand on a beaucoup de variables par rapport au nombre d'individus.
+
+La seconde analyse, qui est une analyse discriminante (LDA), consiste, elle, à maximiser le rapport $\frac{\sigma^{2}_{ inter-classe}}{\sigma^{2}_{totale}}$ ($\sigma^2$ désignant la variance).  En pratique, l'analyse inter-classe peut s'utiliser quand on a beaucoup de d'individus par rapport au nombre de variables.
+
+### BCA :
+
+```{r BCA}
+bca.birds <- bca(pca.birds, as.factor(birds2$groups), scannf = FALSE, nf = 2)
+100*bca.birds$eig/sum(bca.birds$eig)
+```
+On voit qu'avec notre BCA les 2 premières valeurs propres, et donc les 2 axes de notre repère graphique expliquent à elles seules presque 99% de l'inertie totale des données, contre 92% pour l' ACP.
+
+```{r plot bca, echo=FALSE}
+#plot(bca.birds)
+```
+
+### LDA :
+
+```{r lda}
+lda.birds <- discrimin(pca.birds, as.factor(birds2$groups), scannf = FALSE, nf = 2)
+wdis <- lda.birds$fa / sqrt( sum(lda.birds$fa**2))    # normalisation des poids canoniques
+100*lda.birds$eig/sum(lda.birds$eig)
+```
+Cette fois ci au niveau des valeurs propres pour notre LDA nous voyons que le cumul des 2 premières donne un pourcentage d'inertie d'environ 74%, soit 25% de moins qu'avec la BCA. L'idéal aurait était d'avoir une inertie totale expliquée par nos valeurs propres d'au moins 80%, pour cela pour pouvons choisir de conserver la troisième valeur propre. Ainsi nous passons de 74% à 89%, ce qui est suffisant, cela implique également de conserver un troisième axe, soit de représenter de le sous-espace de notre ADL en un espace à 3 dimensions. 
+
+### Affichages :
+Nous avons représenté ici les résultats de nos 3 analyses (ACP, BCA, ADL) avec sur la première ligne les *s.arrow()* pour visualiser nos variables dans les repères issus de chaque analyses, et sur la deuxième ligne nous avons les *s.class()* pour visualiser la dispersion des individus avec la représentation des différentes classes écologiques.
+
+Pour les colonnes nous avons respectivement les graphes de L'ACP, la BCA et la ADL. 
+
+Remarque : Au vue de ce qui a été dit plus concernant l'ADL en 3 dimensions, nous avons tout de même choisi de ne la représenter qu'avec 2 axes, soit 74% de l'inertie totale. 
+
+```{r s.arrow(), fig.height=2, fig.width=2.5, echo=FALSE}
+par(mfrow=c(1,3))
+s.arrow(pca.birds$c1)
+s.arrow(bca.birds$c1)
+s.arrow(wdis)
+```
+
+```{r s.class, fig.height=2, fig.width=2.5, echo=FALSE}
+par(mfrow=c(1,3))
+s.class(pca.birds$li * 0.05, as.factor(birds2$groups))
+s.class(bca.birds$ls * 0.05, as.factor(birds2$groups))
+s.class(lda.birds$li * 0.1, as.factor(birds2$groups))
+```
+
+On voit qu'avec l'analyse discriminante, nous pouvons mieux "discerner" les différentes classes écologiques, de plus nos variables de tailles ne sont plus toutes dirigées selon le même axe.
+
+## 3. Tables des moyennes :
+
+A présent, et pour la suite de ce devoir nous désirons afficher les résultats des différentes analyses dans un tableau de la forme [classes * variables]. En d'autres termes cela signifie avoir pour chaque classe d'individus, la moyenne de tous les individus pour chaque variable. Cela nous servira par exemple à calculer des matrices de distances entre les classes d'individus.
+
+Pour nos données brutes et celles issus de la PCA, nous pouvons par exemple utiliser la fonction *aggregate()* pour obtenir un tel tableau (variables *meantab* et *pcatab*). 
+
+Pour la BCA, le tableau et directement fournie par la fonction. On remarque qu'il s'agit du même tableau que celui que nous avons construit à partir des résultats de l'ACP. 
+
+Pour la LDA nous effectuons un multiplication des matrices *lda$fa* contenant les poids des variables et *lda$li* qui contient les scores par individus, puis nous utilisons la fonction *aggregate()* à nouveau. 
+
+```{r mean tabs}
+meantab <-  aggregate(birds2[,1:10], list(birds2$groups), mean)
+pcatab <- aggregate(pca.birds$tab, list(birds2$groups), mean) 
+bcatab <- bca.birds$tab 
+
+ldatab <- aggregate( t( (as.matrix( (wdis ) )  %*% t(as.matrix(lda.birds$li)) ) ), 
+                     list(birds2$groups), mean)[2:11]
+rownames(ldatab) <- as.factor(pcatab$Group.1)
+```
+
+
+## 4. Analyse Principale en Coordonnées (PCO) :
+
+Une analyse principale en coordonnées (PCO) possède globalement le même objectif qu'une ACP, à la différence que l'ACP est basée sur les valeurs propres et que la PCO est quant à elle basée sur les distances. Ainsi cette méthode fait référence à une matrice de distance carrée symétrique, aussi appelée matrice de similarité. L'objectif ici est donc de décrire au mieux les données en réduisant les dimensions de la matrice de distance entre les objets, tout en maximisant les corrélations linéaires et les mesures de distance dans l'ordination. 
+
+Ainsi nous allons effectuer 3 PCO : La première basée sur notre tableau issus de la BCA, la deuxième sur celui de l'ADL, la troisième issues directement du jeu de données filtré (donc avant ACP) *birds2*. Pour ce dernier, nous allons en réalité transposer la matrice du dataframe *birds2* car ce que nous intéresse ici est la distance entre variables, afin justement de dresser des comparaisons entre distances des classes d'individus et distance des variables entre elles dans un espace bi-dimensionnel.
+
+Pour effectuer nos PCO nous auront besoin de convertir nos matrices en matrices de distances. Nous utiliserons tout simplement la fonction *dist()* pour faire cela. Par ailleurs, il est préférable de travailler avec des matrices de distances euclidiennes, car celles ci possèdent des propriétés uniques (symétrie, égalités triangulaires ...). Nous devons donc vérifier que nos distances sont euclidiennes, avec la fonction *is.euclid()* 
+
+```{r is.euclid}
+ c (is.euclid(dist(bcatab)) , is.euclid(dist(ldatab)), is.euclid(dist(t(birds2[,-11])) ) )
+```
+
+C'est bon nos distances sont donc toutes les 3 euclidiennes. Dans le cas contraire il aurait fallut les transformer par exemple avec les fonctions *lingoes()* ou bien *cailliez()*.
+
+Remarque : il aurait été possible d'élever ces distances au carrée afin de les maximiser, mais cela ne les rendrait plus euclidienne.
+
+```{r pco}
+pco.birds_bet <- dudi.pco(dist(bcatab) , scannf = FALSE, nf = 2)
+pco.birds_discrim <- dudi.pco(dist(ldatab), scannf = FALSE, nf = 2)
+pco.variables <- dudi.pco(dist(t(birds2[,-11])) , scannf = FALSE, nf = 2)
+```
+
+Pour les graphes nous avons dans l'ordre les PCO faites à partir des tables { gauche: BCA, millieu : ADL, droite : t(birds2) }
+
+```{r plots pco, fig.height=2, fig.width=3, echo=FALSE}
+
+par(mfrow=c(1,3))
+
+scatter(pco.birds_bet)
+scatter(pco.birds_discrim)
+scatter(pco.variables)
+```
+
+
+## 5. Clustering hiérarchique:
+
+Le clustering est une autre méthode d'analyse pour nos données, celle ci est basée sur le partitionnement des données et vise à diviser notre ensemble de données en paquets ou sous-ensembles homogènes, de façon à ce que tous les individus d'un même sous ensemble partagent un maximum de caractéristiques en commun, on désigne ces caractéristiques comme étant des critères de proximité.
+
+Pour le clustering hiérarchique, le paramètre de comparaison est choisi à l'avance, ensuite des distances euclidiennes sont calculées, et les individus (ou variables si c'est qui est comparée) les plus proches, sont liées deux à deux jusqu'à obtenir une diagramme hiérarchisé nommé **dendrogramme**. Pour ce faire nous allons donc utiliser les mêmes matrices de distances que pour les PCO.
+
+Nous avons donc réalisé 4 classifications : Pour la première nous avons comparés tous les individus entre eux (matrice *birds2*), la deuxième nous avons comparé les 10 variables de tailles entre elle (matrice *t(birds2)*), la troisième nous avons comparé directement les 6 classes écologiques d'oiseaux selon leurs moyennes dans chaques variables obtenue par la BCA et la quatrième est issues de l'ADL. 
+
+Comme vous pouvez le voir dans le champs "method" de la fonction *hclust()* nous avons choisi la méthode du **complete** linkage. Celle - ci est l'opposée du **single** linkage et correspond au choix du "pire des cas". Ici on choisit comme représentant de chaque sous ensemble l'individu le moins similaire des individus d'un autre sous ensemble. Ainsi la similarité entre les paquets (ou clusters) est le minimum de la similarité entre les individus des paquets. 
+
+
+```{r clustering }
+clusty_var <- hclust(dist(t(birds2[,-11])) , method = "complete")
+clusty_indv <- hclust(dist(birds2[1:10]) , method = "complete")
+clusty_bet <- hclust(dist(bcatab) , method = "complete")
+clusty_discrim <- hclust( dist(ldatab) , method = "complete")
+```
+
+```{r dendrograms indiv and variables , fig.height=4, fig.width=8, echo=FALSE}
+par(mfrow = c(1, 2))
+
+plot(clusty_indv, main = "Dendrogram of individus analysis", 
+     cex.main = 0.85, cex = 0.75, xlab = "", sub = "", labels = FALSE)
+
+rect.hclust(clusty_indv, k = 3, border = "red")
+
+plot(clusty_var, main = "Dendrogram of variables analysis", 
+     cex.main = 0.85, cex = 0.75, xlab = "", sub = "")
+
+```
+
+```{r dendrograms, fig.height=4, fig.width=8, echo=FALSE}
+par(mfrow = c(1, 2))
+
+plot(clusty_bet, main = "Dendrogram of between classes analysis", 
+     cex.main = 0.85, cex = 0.75, xlab = "", sub = "")
+
+plot(clusty_discrim, main = "Dendrogram of discriminant classes  analysis ", 
+     cex.main = 0.85, cex = 0.75, xlab = "", sub="")
+```
+
+# Interprétations et conclusion :
+
+Tout d'abord et d'un point de vu purement graphique et visuel, nous voyons que les résultats issus de l'analyse BCA offrent une meilleure cohérence et correspondance avec les résultats d'analyse (PCO et regroupements hiérarchiques) faits directement sur les variables et les individus. Cela s'explique d'une part avec les valeurs propres obtenues pour la BCA : 99% d'inertie expliquée contre 74% pour l'ADL, et d'autre part parce que nous travaillons sur un nombre de variables (11 en tout), légèrement grand et qui peut donc avoir son importance dans l'analyse en favorisant dans la pratique une analyse BCA plutôt que ADL (cela reste néanmoins une hypothèse). 
+
+À présent nous allons essayer de caractériser les 6 types d'oiseaux présents dans le jeu de données selon les différentes variables de tailles en utilisant tous les résultats d'analyses obtenus jusqu'ici. En cas d'ambiguïté nous privilégierons les résultats de la BCA plutôt que ceux l'ADL.
+
+- Les classes d'oiseaux grimpeurs (P) et d'oiseaux Chanteurs (SO) sont des classes très proches, cette proximité est observable sur tous les graphiques. Ces classes sont caractérisées par les longueurs et diamètres de l'humérus et de l'ulna, soit de façon globale par les membres supérieurs des oiseaux.
+
+- Les classes d'oiseaux raptors (R) et d'oiseaux nageurs (SW) sont elles aussi assez proches sur nos graphiques. Elles notamment caractérisées par la longueur du tibiotarse et du tarso-métatarse, soit aux parties basses des membres inférieurs. Ils peuvent également être caractérisé par leur faible taille d'os pour les membres supérieurs (humérus et ulna).
+
+- La classe des oiseaux terrestres (T) est caractérisée par la longueur et le diamètre du fémur, mais également un peu par le diamètre du tarso-métatarse.
+
+- Enfin la dernière classe d'oiseaux échassiers (W) est caractérisée par la longueur et le diamètre des tibiotarses mais aussi par le diamètre du fémur.
